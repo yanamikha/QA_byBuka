@@ -1,0 +1,9 @@
+﻿.blockText {
+    padding: 10px;
+    background-color: #FFFFD9;
+    border-style: solid;
+    border-width: thin;
+    font-family: 'Cambria Math';
+    font-size:larger;
+    color:red;
+}

@@ -1,0 +1,59 @@
+﻿body {
+    background: #d52269;
+    background: linear-gradient(to top, #03aaa2 0%, #d5b03d 50%, #d52269 70%);
+    padding-top: 20px;
+    height: 50em
+}
+
+header {
+    width: 100%;
+    position: fixed;
+    min-height: 2em;
+    top: 10px;
+    right: 10px;
+    max-width: 8em;
+    color: blue;
+    text-decoration: underline;
+}
+
+h1 {
+    text-align: center;
+    color: #0d2b29;
+}
+
+
+button:hover {
+    color: cornflowerblue;
+}
+
+
+input[type=button] {
+    margin-top: 17px;
+    width: 95px;
+    margin-left: -18px;
+    color: #d2d2d2;
+    border-right: #77767e 1px;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    background: radial-gradient(#70a789, #4f8867);
+}
+
+a {
+    text-align: right;
+    color: blue;
+    text-decoration: underline;
+}
+
+input[type=checkbox] {
+    margin-right: 20px;
+    margin-left: 32px;
+    height: 20px;
+    width: 20px;
+}
+
+table {
+    font-size: 25px;
+    border: none;
+    background-color: inherit;
+    padding: 5px 5px 5px 5px;
+}

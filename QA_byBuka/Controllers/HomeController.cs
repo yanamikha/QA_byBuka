@@ -6,32 +6,77 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using QA_byBuka.Models;
-
 namespace QA_byBuka.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        IProblemRepository repo;
+        public HomeController(IProblemRepository r)
         {
-            _logger = logger;
+            repo = r;             
         }
 
         public IActionResult Index()
         {
-            return View();
+            return View(repo.GetAllProblems());
+        }
+        public ActionResult Details(int id)
+        {
+            AnswerRepository answer = new AnswerRepository(Startup.connectionString);
+            IEnumerable<Answer> answers;
+            answers = answer.GetAllAnswers(id);
+            if (answer != null)
+                return View(answers);
+            return NotFound();
         }
 
-        public IActionResult Privacy()
+        public ActionResult Create()
         {
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [HttpPost]
+        public ActionResult Create(Problem problem)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            repo.Create(problem);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            Problem problem = repo.Get(id);
+            if (problem != null)
+                return View(problem);
+            return NotFound();
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Problem problem)
+        {
+            repo.Update(problem);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        [ActionName("Delete")]
+        public ActionResult ConfirmDelete(int id)
+        {
+            Problem problem = repo.Get(id);
+            if (problem != null)
+                return View(problem);
+            return NotFound();
+        }
+        [HttpGet]
+        [ActionName("AllMyProblems")]
+        public ActionResult AllMyProblems(int id)
+        {
+            return View(repo.GetAllMyProblems(id));
+        }
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            repo.Delete(id);
+            return RedirectToAction("Index");
         }
     }
 }

@@ -1,8 +1,29 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model  IEnumerable<QA_byBuka.Models.Problem>
+    @*@{
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }*@
+    <head>
+        <link rel="stylesheet" href="~/Content/style.css" asp-append-version="true" />
+    </head>
+    <body>
+        <h1>
+            На повестке дня
+        </h1>
+        <table class="table">
+            <tr>
+                <th>Проблема</th>
+                <th>Действие</th>
+            </tr>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.problem</td>
+                    <td>
+                        <a asp-controller="Home" asp-action="Details" asp-route-id="@item.id">Просмотреть</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </body>
+

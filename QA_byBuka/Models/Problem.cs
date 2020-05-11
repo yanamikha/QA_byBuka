@@ -8,7 +8,8 @@ namespace QA_byBuka.Models
     public class Problem
     {
 		public int id { get; set; }
-        public string problem { get; set; }
+		public int author { get; set; }
+		public string problem { get; set; }
 		public Int16 isPublic { get; set; }
 		public Int16 canAddAnswersEverybody { get; set; }
 		public DateTime deadline { get; set; }

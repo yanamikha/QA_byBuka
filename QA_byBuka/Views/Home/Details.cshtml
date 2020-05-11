@@ -1,0 +1,22 @@
+﻿@model IEnumerable<QA_byBuka.Models.Answer>
+
+<div>
+    <hr />
+</div>
+<div>
+    <table>
+        @foreach (var item in Model)       
+        {
+
+            <tr>
+                <td>@item.answer</td>
+                <td>
+
+                    <input type="checkbox" />
+                    <label asp-controller="Home" asp-action="Details" asp-route-id="@item.id"></label>
+                </td>
+            </tr>
+
+        }
+    </table>
+    </div>
